@@ -5,16 +5,15 @@ const {width, height} = Dimensions.get('window');
 
 const Style = StyleSheet.create({
   inputView: {
-    width: '100%',
-    backgroundColor: colors.grey.lightGrey3,
-    height: 45,
-    alignItems: 'center',
-    marginBottom: 15,
     flexDirection: 'row',
     alignItems: 'center',
+    height: 45,
+    width: '100%',
+    backgroundColor: colors.lightGrey.lightGrey1,
     borderWidth: 1,
-    borderColor: colors.grey.lightGrey2,
+    borderColor: colors.lightGrey.lightGrey2,
     borderRadius: 10,
+    marginBottom: 15,
   },
   errorMessage: {
     marginBottom: 15,
@@ -27,7 +26,7 @@ const Style = StyleSheet.create({
     paddingHorizontal: 15,
   },
   eye: {
-    color: colors.grey.lightGrey2,
+    color: colors.lightGrey.lightGrey2,
     fontSize: 20,
   },
 });

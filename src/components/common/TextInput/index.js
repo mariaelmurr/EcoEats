@@ -25,7 +25,7 @@ const Input = ({
 }) => {
   return (
     <>
-      <View style={[Style.inputView]}>
+      <View style={Style.inputView}>
         <TextInput
           onChangeText={onChangeText}
           onBlur={onBlur}
@@ -33,8 +33,8 @@ const Input = ({
           value={value}
           placeholder={placeholder}
           type={type}
-          placeholderTextColor={colors.grey.lightGrey1}
-          style={[Style.inputText]}
+          placeholderTextColor={colors.grey}
+          style={Style.inputText}
           keyboardType={keyboardType}
           autoCapitalize={autoCapitalize}
           secureTextEntry={secureTextEntry}
@@ -51,7 +51,7 @@ const Input = ({
         )}
       </View>
       {error && (
-        <Text color={colors.red.red} fontSize={12} style={Style.errorMessage}>
+        <Text color={colors.red} fontSize={12} style={Style.errorMessage}>
           {error}
         </Text>
       )}
