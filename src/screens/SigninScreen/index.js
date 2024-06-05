@@ -61,16 +61,17 @@ const SigninScreen = () => {
       description="Enter your email address and password to access your account or create an account">
       <AuthInputsView>
         <Text weight="Bold" style={{marginBottom: 10}} fontSize={14}>
-          Your Name
+          Your Email
         </Text>
         <Input
-          onChangeText={handleChange('fullName')}
-          onBlur={handleBlur('fullName')}
-          onFocus={() => setFocusedInput('fullName')}
-          value={values.fullName}
-          placeholder="Enter Your Name"
+          onChangeText={handleChange('email')}
+          onBlur={handleBlur('email')}
+          onFocus={() => setFocusedInput('email')}
+          value={values.email}
+          placeholder="Enter Email"
           type="text"
-          error={touched.fullName && errors.fullName}
+          autoCapitalize="none"
+          error={touched.email && errors.email}
         />
 
         <Text weight="Bold" fontSize={14} style={{marginBottom: 10}}>
@@ -91,7 +92,7 @@ const SigninScreen = () => {
           showPassword={showPassword}
         />
 
-        <GlobalButton title="Sign in" />
+        <GlobalButton title="Sign in" onPress={handleSubmit} />
 
         <View style={Style.socialView}>
           <Text
