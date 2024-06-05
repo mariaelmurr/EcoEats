@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Image, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 
 import * as Yup from 'yup';
 import {useDispatch, useSelector} from 'react-redux';
@@ -14,10 +14,9 @@ import {colors} from '../../constants/colors';
 import Style from './styles';
 import SocialButton from '../../components/SocialButton';
 
-import Apple from '../../assets/icons/apple.png';
-import Google from '../../assets/icons/google.png';
+import BlankSpacer from 'react-native-blank-spacer';
 
-const SigninScreen = () => {
+const SigninScreen = ({navigation}) => {
   const dispatch = useDispatch();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -55,44 +54,61 @@ const SigninScreen = () => {
     validateOnMount: true,
   });
 
+  const navigateToSignUpScreen = () => {
+    navigation.navigate('SignupScreen');
+  };
+
   return (
     <AuthImageBackground
       title="Sign in"
       description="Enter your email address and password to access your account or create an account">
       <AuthInputsView>
-        <Text weight="Bold" style={{marginBottom: 10}} fontSize={14}>
-          Your Email
-        </Text>
-        <Input
-          onChangeText={handleChange('email')}
-          onBlur={handleBlur('email')}
-          onFocus={() => setFocusedInput('email')}
-          value={values.email}
-          placeholder="Enter Email"
-          type="text"
-          autoCapitalize="none"
-          error={touched.email && errors.email}
-        />
+        <View style={{flexGrow: 1}}>
+          <Text weight="Bold" style={{marginBottom: 10}} fontSize={14}>
+            Your Email
+          </Text>
+          <Input
+            onChangeText={handleChange('email')}
+            onBlur={handleBlur('email')}
+            onFocus={() => setFocusedInput('email')}
+            value={values.email}
+            placeholder="Enter Email"
+            type="text"
+            autoCapitalize="none"
+            error={touched.email && errors.email}
+          />
 
-        <Text weight="Bold" fontSize={14} style={{marginBottom: 10}}>
-          Password
-        </Text>
-        <Input
-          type="password"
-          onChangeText={handleChange('password')}
-          onBlur={handleBlur('password')}
-          onFocus={() => setFocusedInput('password')}
-          value={values.password}
-          placeholder="Enter Password"
-          secureTextEntry={showPassword ? false : true}
-          autoCapitalize="none"
-          error={touched.password && errors.password}
-          password={true}
-          onIconPress={() => setShowPassword(!showPassword)}
-          showPassword={showPassword}
-        />
+          <Text weight="Bold" fontSize={14} style={{marginBottom: 10}}>
+            Password
+          </Text>
+          <Input
+            type="password"
+            onChangeText={handleChange('password')}
+            onBlur={handleBlur('password')}
+            onFocus={() => setFocusedInput('password')}
+            value={values.password}
+            placeholder="Enter Password"
+            secureTextEntry={showPassword ? false : true}
+            autoCapitalize="none"
+            error={touched.password && errors.password}
+            password={true}
+            onIconPress={() => setShowPassword(!showPassword)}
+            showPassword={showPassword}
+          />
 
-        <GlobalButton title="Sign in" onPress={handleSubmit} />
+          <GlobalButton title="Sign in" onPress={handleSubmit} />
+
+          <BlankSpacer height={20} />
+
+          <TouchableOpacity onPress={() => navigateToSignUpScreen()}>
+            <Text color={colors.grey} fontSize={14} textAlign="center">
+              Don't have an account?{' '}
+              <Text color={colors.green} fontSize={14}>
+                Sign up
+              </Text>
+            </Text>
+          </TouchableOpacity>
+        </View>
 
         <View style={Style.socialView}>
           <Text
@@ -106,13 +122,9 @@ const SigninScreen = () => {
 
           <View style={Style.row}>
             <View style={{marginRight: 10}}>
-              <SocialButton>
-                <Image source={Apple} style={Style.icon} />
-              </SocialButton>
+              <SocialButton type="apple" />
             </View>
-            <SocialButton>
-              <Image source={Google} style={Style.icon} />
-            </SocialButton>
+            <SocialButton type="google" />
           </View>
         </View>
       </AuthInputsView>

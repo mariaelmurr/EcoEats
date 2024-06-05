@@ -13,5 +13,9 @@ const Style = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.lightGrey.lightGrey2,
   },
+  icon: {
+    height: 25,
+    width: 25,
+  },
 });
 export default Style;

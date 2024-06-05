@@ -8,6 +8,8 @@ const Style = StyleSheet.create({
     paddingVertical: 20,
     backgroundColor: colors.white,
     borderRadius: 20,
+    height: height / 1.5,
+    flexGrow: 1,
   },
 });
 export default Style;

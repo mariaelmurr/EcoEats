@@ -6,7 +6,12 @@ import Style from './styles';
 const AuthInputsView = ({children}) => {
   return (
     <KeyboardAvoidingView style={Style.rootView}>
-      <ScrollView showsVerticalScrollIndicator={false}>{children}</ScrollView>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{flexGrow: 1}}
+        contentContainerStyle={{flexGrow: 1, justifyContent: 'center'}}>
+        {children}
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 };
