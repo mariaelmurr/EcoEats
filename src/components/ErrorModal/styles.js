@@ -20,7 +20,7 @@ const Style = StyleSheet.create({
   },
   closeIcon: {
     alignItems: 'flex-end',
-    marginBottom: 10,
+    marginBottom: 5,
   },
 });
 export default Style;

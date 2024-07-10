@@ -39,10 +39,12 @@ export const signup = obj => {
         dispatch(authSlice.actions.setUser(obj));
       }
     } catch (error) {
-      console.error('Signup error:', error);
-      console.log(typeof error);
-      //   dispatch(authSlice.actions.setErrorMessage(error));
-      //   dispatch(authSlice.actions.setShowErrorModal(true));
+      console.error('Signup error:', JSON.stringify(error?.message));
+
+      dispatch(
+        authSlice.actions.setErrorMessage(JSON.stringify(error?.message)),
+      );
+      dispatch(authSlice.actions.setShowErrorModal(true));
     } finally {
       dispatch(authSlice.actions.setLoading(false));
     }
@@ -53,5 +55,34 @@ export const clearErrorMessage = () => {
   return async dispatch => {
     dispatch(authSlice.actions.setErrorMessage(''));
     dispatch(authSlice.actions.setShowErrorModal(false));
+  };
+};
+
+export const login = ({email, password}) => {
+  return async dispatch => {
+    dispatch(authSlice.actions.setLoading(true));
+    try {
+      const users = await getUsersFromFile();
+      const user = users.find(user => user.email === email);
+
+      if (!user) {
+        throw new Error('User not found');
+      }
+
+      if (user.password !== password) {
+        throw new Error('Invalid password');
+      }
+
+      dispatch(authSlice.actions.setUser(user));
+    } catch (error) {
+      console.error('Login error:', JSON.stringify(error?.message));
+
+      dispatch(
+        authSlice.actions.setErrorMessage(JSON.stringify(error?.message)),
+      );
+      dispatch(authSlice.actions.setShowErrorModal(true));
+    } finally {
+      dispatch(authSlice.actions.setLoading(false));
+    }
   };
 };

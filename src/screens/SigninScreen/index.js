@@ -15,9 +15,14 @@ import Style from './styles';
 import SocialButton from '../../components/SocialButton';
 
 import BlankSpacer from 'react-native-blank-spacer';
+import {clearErrorMessage, login} from '../../redux/actions/authActions';
+import ErrorModal from '../../components/ErrorModal';
 
 const SigninScreen = ({navigation}) => {
   const dispatch = useDispatch();
+  const {showErrorModal, errorMessage, loading} = useSelector(
+    state => state.auth,
+  );
 
   const [showPassword, setShowPassword] = useState(false);
   const [focusesInput, setFocusedInput] = useState('');
@@ -36,7 +41,11 @@ const SigninScreen = ({navigation}) => {
   });
 
   const onSubmit = values => {
-    console.log(values);
+    const obj = {
+      email: values.email,
+      password: values.password,
+    };
+    dispatch(login(obj));
   };
 
   const {
@@ -96,7 +105,11 @@ const SigninScreen = ({navigation}) => {
             showPassword={showPassword}
           />
 
-          <GlobalButton title="Sign in" onPress={handleSubmit} />
+          <GlobalButton
+            title="Sign in"
+            onPress={handleSubmit}
+            loading={loading}
+          />
 
           <BlankSpacer height={20} />
 
@@ -128,6 +141,12 @@ const SigninScreen = ({navigation}) => {
           </View>
         </View>
       </AuthInputsView>
+
+      <ErrorModal
+        modalVisible={showErrorModal}
+        message={errorMessage}
+        onRequestClose={() => dispatch(clearErrorMessage())}
+      />
     </AuthImageBackground>
   );
 };
