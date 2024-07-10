@@ -10,4 +10,8 @@ export const colors = {
   },
   green: '#019934',
   stroke: '#000000aa',
+  greenShades: {
+    green1: '#009934',
+    lightGreen1: '#26a652',
+  },
 };
