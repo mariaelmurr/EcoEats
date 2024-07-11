@@ -45,7 +45,7 @@ const MainHeader = ({withLocation, withSearch, navigation, title}) => {
 
         {withLocation && (
           <Text textAlign="center" color={colors.white} weight="Bold">
-            Baridhara, Dhaka
+            Beirut, Lebanon
           </Text>
         )}
 
