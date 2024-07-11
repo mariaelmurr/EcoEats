@@ -1,5 +1,5 @@
 🍏 EcoEats  
-Welcome to EcoEats! 🌱 Your go-to app for helathy food choices! 🍎🥕🥦
+Welcome to EcoEats! 🌱 Your go-to app for healthy food choices! 🍎🥕🥦
 
 Features  
 📲 User Authentication  
